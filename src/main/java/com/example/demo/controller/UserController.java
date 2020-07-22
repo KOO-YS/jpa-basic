@@ -22,15 +22,20 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<User> getUsers(){
+    public String getUsers(){
         System.out.println("검색");
+        StringBuffer sb = new StringBuffer();
         List<User> list = userRepository.findAll();
         for(User u : list){
-            System.out.println(u.getUserId());
+            sb.append(u.getUserId()+"\n");
         }
-        return list;
+        return sb.toString();
     }
-
+    @GetMapping("/get/{id}")
+    public String getUser(@PathVariable long id){
+        User u = userRepository.getOne(id);
+        return u.toString();
+    }
     @PutMapping("/add")
     public User create(@RequestBody User user){
         User newuser = userRepository.save(user);
@@ -47,5 +52,11 @@ public class UserController {
         System.out.println("친구 성공"+id+"/"+fid);
         return friend;
     }
+    @DeleteMapping("delete/{id}")
+    public void deleteUser(@PathVariable long id){
+        User user = userRepository.findById(id).get();
+        userRepository.delete(user);
+        System.out.println("삭제 성공");
 
+    }
 }

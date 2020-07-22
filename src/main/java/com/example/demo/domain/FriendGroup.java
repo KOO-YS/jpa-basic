@@ -1,6 +1,6 @@
 package com.example.demo.domain;
 
-import com.example.demo.domain.composite.FriendPrimaryKey;
+import com.example.demo.domain.composite.FriendGroupPrimaryKey;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,26 +16,25 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@IdClass(FriendPrimaryKey.class)
+@IdClass(FriendGroupPrimaryKey.class)
 @Entity
-public class Friend implements Serializable {
+public class FriendGroup{
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long groupId;
 
     @Id
     @MapsId("userId")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Long userId;
+    private long userId;
 
-    @Id
-    @MapsId("userId")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Long friendId;
+    private String groupName;
 
+    // 그룹멤버 클래스 아이디
     @OneToMany(cascade = {CascadeType.PERSIST}, orphanRemoval = true)
     @JoinColumns({
-            @JoinColumn(name = "userId"),
-            @JoinColumn(name = "friendId")
+            @JoinColumn(name = "groupId"),
+            @JoinColumn(name = "userId")
     })
-    private Set<FriendGroupMember> groupMember = new HashSet<>();
+    private Set<FriendGroupMember> userGroup = new HashSet<>();
 }
-
-

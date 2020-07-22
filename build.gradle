@@ -25,6 +25,14 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.0.RELEASE'
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
 
+	// https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'
+
+	// 보류
+//	compile 'org.springframework.boot:spring-boot-starter-webflux'
+//	compile 'org.projectreactor:reactor-spring:1.0.1.RELEASE'
+
+
 	implementation 'org.springframework.boot:spring-boot-starter'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -32,7 +40,13 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-
+	// google login
+//	compile 'org.springframework.social:spring-social-core:2.0.0.M4'
+//	repositories {
+//		maven {
+//			url 'https://repo.spring.io/libs-milestone'
+//		}
+//	}
 
 }
 

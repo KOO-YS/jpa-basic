@@ -1,11 +1,8 @@
-package com.example.demo.domain;
+package com.example.demo.domain.composite;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Objects;
 
